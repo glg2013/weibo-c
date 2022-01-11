@@ -41,4 +41,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function gravatar($size = '100')
+    {
+        $hash = md5(strtolower(trim($this->attributes['email'])));
+        // 网站无法正常访问，这里使用本地的默认头像
+        //return "http://www.gravatar.com/avatar/$hash?s=$size";
+        return '/avatars/rubber-duck.png';
+    }
 }
